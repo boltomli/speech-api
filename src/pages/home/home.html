@@ -5,13 +5,31 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <ion-list>
+    <ion-list-header>Voice Select</ion-list-header>
+
+    <ion-item>
+      <ion-label>Gender</ion-label>
+      <ion-select [(ngModel)]="gender" interface="popover">
+        <ion-option value="Female">Female</ion-option>
+        <ion-option value="Male">Male</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Language</ion-label>
+      <ion-select [(ngModel)]="language" interface="popover">
+        <ion-option value="de-DE">German (Germany)</ion-option>
+        <ion-option value="en-US">English (United States)</ion-option>
+        <ion-option value="it-IT">Italian (Italy)</ion-option>
+        <ion-option value="zh-CN">Chinese (Simplified)</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-textarea placeholder="Input text to speak here"></ion-textarea>
+
+  </ion-list>
+
+  <button ion-button>Speak</button>
+
 </ion-content>

@@ -6,9 +6,12 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  gender: string;
+  language: string;
 
   constructor(public navCtrl: NavController) {
-
+    this.gender = 'Female';
+    this.language = 'en-US';
   }
 
 }
