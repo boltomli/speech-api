@@ -4,6 +4,8 @@ Refer to [Capacitor](https://capacitor.ionicframework.com/docs/) for dependencie
 
 ## Init
 
+Just some notes on how to create this repo. Don't have to repeat after clone.
+
 ```
 npm install -g ionic
 ionic start speech-api tabs
@@ -12,6 +14,7 @@ ionic start speech-api tabs
 Don't enable cordova for now, press N when it asks.
 
 ```
+cd speech-api
 npm install --save @capacitor/core @capacitor/cli
 npx cap init
 npx cap add android
