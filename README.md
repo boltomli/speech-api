@@ -17,12 +17,17 @@ Don't enable cordova for now, press N when it asks.
 cd speech-api
 npm install --save @capacitor/core @capacitor/cli
 npx cap init
+```
+
+## Setup
+
+```
 npx cap add android
 npx cap add ios
 npx cap add electron
 ```
 
-## Build
+iOS is macOS only.
 
 ```
 npx cap open android
