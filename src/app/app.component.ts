@@ -21,7 +21,9 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
       storage.get('key').then((val) => {
-        if (!val) this.nav.push(SettingsPage);
+        if (!val) {
+          this.nav.push(SettingsPage);
+        }
       })
     });
   }

@@ -29,8 +29,8 @@
     <ion-item>
       <ion-label>Voice</ion-label>
       <ion-select [(ngModel)]="voice" interface="popover">
-        <ion-option value="Voice 1">Voice 1</ion-option>
-        <ion-option value="Voice 2">Voice 2</ion-option>
+        <ion-option value="Microsoft Server Speech Text to Speech Voice (en-US, Jessa24KRUS)">Microsoft Server Speech Text to Speech Voice (en-US, Jessa24KRUS)</ion-option>
+        <ion-option value="Microsoft Server Speech Text to Speech Voice (en-US, Guy24KRUS)">Microsoft Server Speech Text to Speech Voice (en-US, Guy24KRUS)</ion-option>
       </ion-select>
     </ion-item>
 
@@ -38,6 +38,6 @@
 
   </ion-list>
 
-  <button ion-button block>Speak</button>
+  <button ion-button block (click)="speakText()">Speak</button>
 
 </ion-content>

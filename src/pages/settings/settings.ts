@@ -20,9 +20,9 @@ export class SettingsPage {
     })
   }
 
-  saveSettings(key: string, region: string) {
-    this.storage.set('key', key);
-    this.storage.set('region', region);
+  saveSettings() {
+    this.storage.set('key', this.key);
+    this.storage.set('region', this.region);
 
     let toast = this.toastCtrl.create({
       message: 'Settings saved',
