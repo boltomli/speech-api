@@ -9,6 +9,16 @@
     <ion-list-header>Voice Select</ion-list-header>
 
     <ion-item>
+      <ion-label>Language</ion-label>
+      <ion-select [(ngModel)]="language" interface="popover">
+        <ion-option value="de-DE">German (Germany)</ion-option>
+        <ion-option value="en-US">English (United States)</ion-option>
+        <ion-option value="it-IT">Italian (Italy)</ion-option>
+        <ion-option value="zh-CN">Chinese (Simplified)</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
       <ion-label>Gender</ion-label>
       <ion-select [(ngModel)]="gender" interface="popover">
         <ion-option value="Female">Female</ion-option>
@@ -17,12 +27,10 @@
     </ion-item>
 
     <ion-item>
-      <ion-label>Language</ion-label>
-      <ion-select [(ngModel)]="language" interface="popover">
-        <ion-option value="de-DE">German (Germany)</ion-option>
-        <ion-option value="en-US">English (United States)</ion-option>
-        <ion-option value="it-IT">Italian (Italy)</ion-option>
-        <ion-option value="zh-CN">Chinese (Simplified)</ion-option>
+      <ion-label>Voice</ion-label>
+      <ion-select [(ngModel)]="voice" interface="popover">
+        <ion-option value="Voice 1">Voice 1</ion-option>
+        <ion-option value="Voice 2">Voice 2</ion-option>
       </ion-select>
     </ion-item>
 
