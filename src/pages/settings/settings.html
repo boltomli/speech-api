@@ -7,10 +7,25 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-card>
+      <ion-card-header>
+          Subscription Key
+      </ion-card-header>
+      <ion-card-content>
+        Get Azure unified SpeechService API key per region for free https://azure.microsoft.com/en-us/try/cognitive-services/?api=speech-services or paid: https://go.microsoft.com/fwlink/?LinkId=872236
+      </ion-card-content>
+  </ion-card>
   <ion-list>
 
     <ion-item>
-      <ion-label floating>Key <ion-icon name="key"></ion-icon></ion-label>
+      <ion-label>Region</ion-label>
+      <ion-select [(ngModel)]="region" interface="popover">
+        <ion-option value="eastus">US East</ion-option>
+        <ion-option value="westus">US West</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label floating><ion-icon name="key"></ion-icon></ion-label>
       <ion-input type="text" clearInput></ion-input>
     </ion-item>
 

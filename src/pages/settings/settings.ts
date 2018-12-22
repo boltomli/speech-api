@@ -6,9 +6,10 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'settings.html'
 })
 export class SettingsPage {
+  region: string;
 
   constructor(public navCtrl: NavController) {
-
+    this.region = 'westus';
   }
 
 }
