@@ -26,11 +26,11 @@
     </ion-item>
     <ion-item>
       <ion-label floating><ion-icon name="key"></ion-icon></ion-label>
-      <ion-input type="text" clearInput></ion-input>
+      <ion-input [(ngModel)]="key" type="text" clearInput></ion-input>
     </ion-item>
 
   </ion-list>
 
-  <button ion-button block>Save</button>
+  <button ion-button block (click)="saveSettings(key, region);">Save</button>
 
 </ion-content>
