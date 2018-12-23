@@ -10,7 +10,7 @@
 
     <ion-item>
       <ion-label>Language</ion-label>
-      <ion-select [(ngModel)]="language" interface="popover">
+      <ion-select [(ngModel)]="language">
         <ion-option value="de-DE">German (Germany)</ion-option>
         <ion-option value="en-US">English (United States)</ion-option>
         <ion-option value="it-IT">Italian (Italy)</ion-option>
@@ -29,15 +29,15 @@
     <ion-item>
       <ion-label>Voice</ion-label>
       <ion-select [(ngModel)]="voice" interface="popover">
-        <ion-option value="Microsoft Server Speech Text to Speech Voice (en-US, Jessa24KRUS)">Microsoft Server Speech Text to Speech Voice (en-US, Jessa24KRUS)</ion-option>
-        <ion-option value="Microsoft Server Speech Text to Speech Voice (en-US, Guy24KRUS)">Microsoft Server Speech Text to Speech Voice (en-US, Guy24KRUS)</ion-option>
+        <ion-option value="Microsoft Server Speech Text to Speech Voice (en-US, Jessa24KRUS)">Jessa24KRUS</ion-option>
+        <ion-option value="Microsoft Server Speech Text to Speech Voice (en-US, Guy24KRUS)">Guy24KRUS</ion-option>
       </ion-select>
     </ion-item>
 
-    <ion-textarea placeholder="Input text to speak here" [(ngModel)]="text"></ion-textarea>
+    <ion-textarea [(ngModel)]="text" placeholder="Input text to speak here"></ion-textarea>
 
   </ion-list>
 
-  <button ion-button block (click)="speakText()">Speak</button>
+  <button ion-button block (click)="speakText();">Speak</button>
 
 </ion-content>

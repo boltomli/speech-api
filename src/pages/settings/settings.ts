@@ -28,7 +28,7 @@ export class SettingsPage {
       message: 'Settings saved',
       duration: 1000
     });
-    toast.present(toast);
+    toast.present();
   }
 
   openBrowser(url: string) {

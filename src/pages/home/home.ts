@@ -3,6 +3,8 @@ import { NavController, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import xmlbuilder from 'xmlbuilder';
+import { File, Entry } from '@ionic-native/file';
+import { Media, MediaObject } from '@ionic-native/media';
 
 @Component({
   selector: 'page-home',
@@ -19,7 +21,7 @@ export class HomePage {
   token: string;
   synthUrl: string;
 
-  constructor(public navCtrl: NavController, private storage: Storage, private http: HttpClient, private toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, private storage: Storage, private http: HttpClient, private toastCtrl: ToastController, private file: File, private media: Media) {
     this.storage.get('language').then((val) => {
       this.language = val ? val : 'en-US';
     })
@@ -45,44 +47,52 @@ export class HomePage {
           duration: 1000
         });
 
-        this.http.post(this.tokenUrl, '', {headers: headers, responseType: 'text'}).subscribe(
-          (val) => {
-            this.token = val;
-            headers = new HttpHeaders({
-              'content-type': 'application/ssml+xml',
-              'X-Microsoft-OutputFormat' : 'riff-24khz-16bit-mono-pcm',
-              'Authorization': 'Bearer ' + this.token,
-              'X-Search-AppId': '07D3234E49CE426DAA29772419F436CA',
-              'X-Search-ClientID': '1ECFAE91408841A480F00935DC390960',
-              'User-Agent': 'speech-api-demo'
+        this.http.post(this.tokenUrl, '', {headers: headers, responseType: 'text'}).subscribe((val) => {
+          this.token = val;
+          headers = new HttpHeaders({
+            'content-type': 'application/ssml+xml',
+            'X-Microsoft-OutputFormat' : 'riff-24khz-16bit-mono-pcm',
+            'Authorization': 'Bearer ' + this.token,
+            'X-Search-AppId': '07D3234E49CE426DAA29772419F436CA',
+            'X-Search-ClientID': '1ECFAE91408841A480F00935DC390960',
+            'User-Agent': 'speech-api-demo'
+          });
+          const ssml_doc = xmlbuilder.create('speak')
+            .att('version', '1.0')
+            .att('xml:lang', this.language.toLowerCase())
+            .ele('voice')
+            .att('xml:lang', this.language.toLowerCase())
+            .att('xml:gender', this.gender)
+            .att('name', this.voice)
+            .txt(this.text)
+            .end().toString();
+          this.http.post(this.synthUrl, ssml_doc, {headers: headers, responseType: 'blob'}).subscribe((val) => {
+            toast = toast.setMessage(val.size.toString());
+            toast.present();
+            let synthFile = 'synth.wav';
+            this.file.resolveLocalFilesystemUrl(this.file.cacheDirectory).then(dir => {
+              this.file.writeFile(dir.toInternalURL(), synthFile, val.slice(0), {replace: true}).then((res: Entry) => {
+                const synth: MediaObject = this.media.create(res.toInternalURL());
+                synth.play();
+              }, err => {
+                toast = toast.setMessage(err);
+                toast.present();
+              });
+            }, err => {
+              toast = toast.setMessage(err);
+              toast.present();
             });
-            const ssml_doc = xmlbuilder.create('speak')
-              .att('version', '1.0')
-              .att('xml:lang', this.language.toLowerCase())
-              .ele('voice')
-              .att('xml:lang', this.language.toLowerCase())
-              .att('xml:gender', this.gender)
-              .att('name', this.voice)
-              .txt(this.text)
-              .end().toString();
-            this.http.post(this.synthUrl, ssml_doc, {headers: headers, responseType: 'arraybuffer'}).subscribe(
-              (val) => {
-                toast = toast.setMessage(val.byteLength.toString());
-                toast.present();
-              },
-              (err: HttpErrorResponse) => {
-                toast = toast.setMessage(err.message);
-                toast.present();
-              }
-            );
           },
           (err: HttpErrorResponse) => {
             toast = toast.setMessage(err.message);
             toast.present();
-          }
-        );
-      })
-    })
-
+          });
+        },
+        (err: HttpErrorResponse) => {
+          toast = toast.setMessage(err.message);
+          toast.present();
+        });
+      });
+    });
   }
 }
