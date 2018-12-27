@@ -25,11 +25,9 @@ Run once.
 
 ```
 git clone https://github.com/boltomli/speech-api.git && cd speech-api
-npm install
-npm run build
+npm install && npm run build
 npx cap add android
 npx cap add ios
-npx cap add electron
 ```
 
 Note that iOS is supported on macOS only.
@@ -37,7 +35,6 @@ Note that iOS is supported on macOS only.
 ```
 npx cap open android
 npx cap open ios
-cd electron && npm run electron:start
 ```
 
-Run `npx cap sync` regularly during development.
+Run `npm run build && npx cap sync` regularly during development.
