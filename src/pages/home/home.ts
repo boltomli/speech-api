@@ -66,12 +66,10 @@ export class HomePage {
             .att('name', this.voice)
             .txt(this.text)
             .end().toString();
-          this.http.post(this.synthUrl, ssml_doc, {headers: headers, responseType: 'blob'}).subscribe((val) => {
-            toast = toast.setMessage(val.size.toString());
-            toast.present();
+          this.http.post(this.synthUrl, ssml_doc, {headers: headers, responseType: 'arraybuffer'}).subscribe((val) => {
             let synthFile = 'synth.wav';
             this.file.resolveLocalFilesystemUrl(this.file.cacheDirectory).then(dir => {
-              this.file.writeFile(dir.toInternalURL(), synthFile, val.slice(0), {replace: true}).then((res: Entry) => {
+              this.file.writeFile(dir.toInternalURL(), synthFile, val, {replace: true}).then((res: Entry) => {
                 const synth: MediaObject = this.media.create(res.toInternalURL());
                 synth.play();
               }, err => {
