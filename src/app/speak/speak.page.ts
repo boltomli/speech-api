@@ -7,11 +7,11 @@ import xmlbuilder from 'xmlbuilder/lib';
 import { Media } from '@ionic-native/media/ngx';
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  selector: 'app-speak',
+  templateUrl: 'speak.page.html',
+  styleUrls: ['speak.page.scss']
 })
-export class Tab1Page {
+export class SpeakPage {
   region: string;
   key: string;
   tokenUrl: string;
