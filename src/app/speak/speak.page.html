@@ -13,9 +13,11 @@
         <ion-card-title>Welcome to Speech Services</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p>Provide a valid Speech Services key that matches region first.</p>
-        <p>Update in Settings if region or key changes.</p>
-        <p>See Resources for technical details.</p>
+        <ion-list lines="none">
+          <ion-item><ion-icon name="information-circle-outline"></ion-icon>Provide a valid Speech Services key that matches region first.</ion-item>
+          <ion-item><ion-icon name="information-circle-outline"></ion-icon>Update in Settings if region or key changes.</ion-item>
+          <ion-item><ion-icon name="information-circle-outline"></ion-icon>See Resources for technical details.</ion-item>
+        </ion-list>
       </ion-card-content>
     </ion-card>
 
@@ -39,7 +41,7 @@
       <ion-button expand="block" (click)="saveSettings();">Save</ion-button>
     </ion-list>
 
-    <ion-list>
+    <ion-list lines="none">
       <ion-list-header>
         <ion-label>Voice Select</ion-label>
       </ion-list-header>

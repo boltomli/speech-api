@@ -45,7 +45,13 @@ export class SpeakPage {
               toast.present();
             });
           } else {
-            this.getToken();
+            this.storage.get('token').then((token) => {
+              if (!token) {
+                this.getToken();
+              } else {
+                this.token = token;
+              }
+            });
           }
           this.storage.get('language').then((language) => {
             this.language = language ? language : 'en-US';
@@ -66,12 +72,14 @@ export class SpeakPage {
       headers: {'Ocp-Apim-Subscription-Key': this.key},
       responseType: 'text'
     }).subscribe((token) => {
-      this.token = token;
-      this.toastCtrl.create({
-        message: 'Token set!',
-        duration: 1000
-      }).then((toast) => {
-        toast.present();
+      this.storage.set('token', token).then(() => {
+        this.token = token;
+        this.toastCtrl.create({
+          message: 'Token set!',
+          duration: 1000
+        }).then((toast) => {
+          toast.present();
+        });
       });
     }, (err) => {
       this.toastCtrl.create({
