@@ -1,9 +1,26 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Two
+      Settings
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-list lines="none" [class.hide]="token">
+    <ion-item>
+      <ion-label>Region</ion-label>
+      <ion-select [(ngModel)]="region" interface="popover">
+        <ion-select-option value="eastus">East US</ion-select-option>
+        <ion-select-option value="westus">West US</ion-select-option>
+        <ion-select-option value="southeastasia">Southeast Asia</ion-select-option>
+        <ion-select-option value="westeurope">West Europe</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating"><ion-icon name="key"></ion-icon> Key</ion-label>
+      <ion-input [(ngModel)]="key" type="text" clearInput></ion-input>
+    </ion-item>
+    <ion-button expand="block" (click)="saveSettings();">Save</ion-button>
+  </ion-list>
+</ion-content>
