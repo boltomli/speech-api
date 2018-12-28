@@ -28,7 +28,8 @@ export class SpeakPage {
     private toastCtrl: ToastController,
     private http: HttpClient,
     private file: File,
-    private media: Media
+    private media: Media,
+    private audioContext: AudioContext
   ) {
     this.platform.ready().then(() => {
       this.storage.get('region').then((region) => {
@@ -111,24 +112,40 @@ export class SpeakPage {
       },
       responseType: 'arraybuffer'
     }).subscribe((synth) => {
-      this.file.resolveLocalFilesystemUrl(path).then(entry => {
-        this.file.writeFile(entry.toInternalURL(), name, synth, {replace: true}).then(fileEntry => {
-          this.media.create(fileEntry.toInternalURL()).play();
-          this.toastCtrl.create({
-            message: 'File written!',
-            duration: 1000
-          }).then((toast) => {
-            toast.present();
+      if (this.platform.is('hybrid')) {
+        this.file.resolveLocalFilesystemUrl(path).then(entry => {
+          this.file.writeFile(entry.toInternalURL(), name, synth, {replace: true}).then(fileEntry => {
+            this.media.create(fileEntry.toInternalURL()).play();
+            this.toastCtrl.create({
+              message: 'File written!',
+              duration: 1000
+            }).then((toast) => {
+              toast.present();
+            });
+          }).catch(() => {
+            this.toastCtrl.create({
+              message: 'Err',
+              duration: 1000
+            }).then((toast) => {
+              toast.present();
+            });
           });
-        }).catch(() => {
+        });
+      } else {
+        this.audioContext.decodeAudioData(synth).then((buffer) => {
+          const src = this.audioContext.createBufferSource();
+          src.buffer = buffer;
+          src.connect(this.audioContext.destination);
+          src.start(0);
+        }, (err) => {
           this.toastCtrl.create({
-            message: 'Err',
+            message: err.message,
             duration: 1000
           }).then((toast) => {
             toast.present();
           });
         });
-      });
+      }
     }, (err) => {
       this.toastCtrl.create({
         message: 'Token expired? Retry.\n' + err.message,
