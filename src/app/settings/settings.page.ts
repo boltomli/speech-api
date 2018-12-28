@@ -14,10 +14,12 @@ export class SettingsPage {
   token: string;
   tokenUrl: string;
 
-  constructor(private platform: Platform,
-              private storage: Storage,
-              private toastCtrl: ToastController,
-              private http: HttpClient) {
+  constructor(
+    private platform: Platform,
+    private storage: Storage,
+    private toastCtrl: ToastController,
+    private http: HttpClient
+  ) {
     this.platform.ready().then(() => {
       this.storage.get('region').then((region) => {
         this.region = region ? region : 'westus';
@@ -31,37 +33,41 @@ export class SettingsPage {
             }).then((toast) => {
               toast.present();
             });
-        } else {
-          this.getToken();
-        }
+          } else {
+            this.storage.get('token').then((token) => {
+              this.token = token;
+            });
+          }
+        });
       });
     });
-  });
-}
+  }
 
-getToken() {
-  this.http.post(this.tokenUrl, '', {
-    headers: {'Ocp-Apim-Subscription-Key': this.key},
-    responseType: 'text'
-  }).subscribe((token) => {
-    this.token = token;
-    this.toastCtrl.create({
-      message: 'Token set!',
-      duration: 1000
-    }).then((toast) => {
-      toast.present();
+  getToken() {
+    this.http.post(this.tokenUrl, '', {
+      headers: {'Ocp-Apim-Subscription-Key': this.key},
+      responseType: 'text'
+    }).subscribe((token) => {
+      this.storage.set('token', token).then(() => {
+        this.token = token;
+        this.toastCtrl.create({
+          message: 'Token set!',
+          duration: 1000
+        }).then((toast) => {
+          toast.present();
+        });
+      }, (err) => {
+        this.toastCtrl.create({
+          message: 'Wrong key or region?\n' + err.message,
+          duration: 1000
+        }).then((toast) => {
+          toast.present();
+        });
+      });
     });
-  }, (err) => {
-    this.toastCtrl.create({
-      message: 'Wrong key or region?\n' + err.message,
-      duration: 1000
-    }).then((toast) => {
-      toast.present();
-    });
-  });
-}
+  }
 
-saveSettings() {
+  saveSettings() {
     this.storage.set('region', this.region).then(() => {
       this.storage.set('key', this.key).then(() => {
         this.getToken();

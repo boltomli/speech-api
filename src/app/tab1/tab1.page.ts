@@ -22,12 +22,14 @@ export class Tab1Page {
   voice: string;
   text: string;
 
-  constructor(private platform: Platform,
-              private storage: Storage,
-              private toastCtrl: ToastController,
-              private http: HttpClient,
-              private file: File,
-              private media: Media) {
+  constructor(
+    private platform: Platform,
+    private storage: Storage,
+    private toastCtrl: ToastController,
+    private http: HttpClient,
+    private file: File,
+    private media: Media
+  ) {
     this.platform.ready().then(() => {
       this.storage.get('region').then((region) => {
         this.region = region ? region : 'westus';
