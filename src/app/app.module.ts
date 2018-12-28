@@ -28,7 +28,8 @@ import { Media } from '@ionic-native/media/ngx';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     File,
-    Media
+    Media,
+    AudioContext
   ],
   bootstrap: [AppComponent]
 })

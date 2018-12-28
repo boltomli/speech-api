@@ -41,7 +41,7 @@
       <ion-button expand="block" (click)="saveSettings();">Save</ion-button>
     </ion-list>
 
-    <ion-list lines="none">
+    <ion-list lines="none" [class.hide]="!token">
       <ion-list-header>
         <ion-label>Voice Select</ion-label>
       </ion-list-header>
@@ -68,13 +68,10 @@
           <ion-select-option value="Microsoft Server Speech Text to Speech Voice (en-US, Guy24KRUS)">Guy24KRUS</ion-select-option>
         </ion-select>
       </ion-item>
-    </ion-list>
-
-    <ion-list>
       <ion-list-header>
         <ion-label>Text to Speak</ion-label>
       </ion-list-header>
       <ion-textarea [(ngModel)]="text" placeholder="Input text to speak here"></ion-textarea>
+      <ion-button expand="block" (click)="speakText();">Speak</ion-button>
     </ion-list>
-    <ion-button expand="block" (click)="speakText();">Speak</ion-button>
   </ion-content>
