@@ -35,7 +35,11 @@ export class SettingsPage {
             });
           } else {
             this.storage.get('token').then((token) => {
-              this.token = token;
+              if (!token) {
+                this.getToken();
+              } else {
+                this.token = token;
+              }
             });
           }
         });
@@ -56,13 +60,13 @@ export class SettingsPage {
         }).then((toast) => {
           toast.present();
         });
-      }, (err) => {
-        this.toastCtrl.create({
-          message: 'Wrong key or region?\n' + err.message,
-          duration: 1000
-        }).then((toast) => {
-          toast.present();
-        });
+      });
+    }, (err) => {
+      this.toastCtrl.create({
+        message: 'Wrong key or region?\n' + err.message,
+        duration: 1000
+      }).then((toast) => {
+        toast.present();
       });
     });
   }
