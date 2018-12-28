@@ -1,9 +1,7 @@
 {
-  "name": "speech-api",
+  "name": "speech-api-ng",
   "integrations": {
     "cordova": {}
   },
-  "type": "ionic-angular",
-  "id": "0e910cc4",
-  "app_id": ""
+  "type": "angular"
 }

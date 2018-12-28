@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card class="welcome-card">
+      <ion-card-header>
+        <ion-card-subtitle>Get Started</ion-card-subtitle>
+        <ion-card-title>Welcome to Speech Services</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Provide a valid Speech Services key that matches region first then try speak something.</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-list lines="none">
+      <ion-list-header>
+        <ion-label>Resources</ion-label>
+      </ion-list-header>
+      <ion-item href="https://azure.microsoft.com/try/cognitive-services/" target="_blank">
+        <ion-icon slot="start" color="medium" name="book"></ion-icon>
+        <ion-label>Get Speech Services subscription</ion-label>
+      </ion-item>
+      <ion-item href="https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/regions#text-to-speech">
+        <ion-icon slot="start" color="medium" name="globe"></ion-icon>
+        <ion-label>List of regions</ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-list lines="none">
+      <ion-list-header>
+        <ion-label>Settings</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Region</ion-label>
+        <ion-select [(ngModel)]="region" interface="popover">
+          <ion-select-option value="eastus">East US</ion-select-option>
+          <ion-select-option value="westus">West US</ion-select-option>
+          <ion-select-option value="southeastasia">Southeast Asia</ion-select-option>
+          <ion-select-option value="westeurope">West Europe</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating"><ion-icon name="key"></ion-icon> Key</ion-label>
+        <ion-input [(ngModel)]="key" type="text" clearInput></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" (click)="saveSettings();">Save</ion-button>
+
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Voice Select</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Language</ion-label>
+        <ion-select [(ngModel)]="language">
+          <ion-select-option value="de-DE">German (Germany)</ion-select-option>
+          <ion-select-option value="en-US">English (United States)</ion-select-option>
+          <ion-select-option value="it-IT">Italian (Italy)</ion-select-option>
+          <ion-select-option value="zh-CN">Chinese (Simplified)</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Gender</ion-label>
+        <ion-select [(ngModel)]="gender" interface="popover">
+          <ion-select-option value="Female">Female</ion-select-option>
+          <ion-select-option value="Male">Male</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Voice</ion-label>
+        <ion-select [(ngModel)]="voice" interface="popover">
+          <ion-select-option value="Microsoft Server Speech Text to Speech Voice (en-US, Jessa24KRUS)">Jessa24KRUS</ion-select-option>
+          <ion-select-option value="Microsoft Server Speech Text to Speech Voice (en-US, Guy24KRUS)">Guy24KRUS</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Text to Speak</ion-label>
+      </ion-list-header>
+      <ion-textarea [(ngModel)]="text" placeholder="Input text to speak here"></ion-textarea>
+    </ion-list>
+    <ion-button expand="block" (click)="speakText();">Speak</ion-button>
+  </ion-content>

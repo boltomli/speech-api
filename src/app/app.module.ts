@@ -1,51 +1,35 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
+import { RouteReuseStrategy } from '@angular/router';
 
-import { AboutPage } from '../pages/about/about';
-import { HomePage } from '../pages/home/home';
-import { SettingsPage } from '../pages/settings/settings';
-import { TabsPage } from '../pages/tabs/tabs';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
+import { File } from '@ionic-native/file/ngx';
 import { IonicStorageModule } from '@ionic/storage';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { File } from '@ionic-native/file';
-import { Media } from '@ionic-native/media';
+import { Media } from '@ionic-native/media/ngx';
 
 @NgModule({
-  declarations: [
-    MyApp,
-    AboutPage,
-    HomePage,
-    SettingsPage,
-    TabsPage
-  ],
+  declarations: [AppComponent],
+  entryComponents: [],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(),
     IonicStorageModule.forRoot(),
-    HttpClientModule
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    AboutPage,
-    HomePage,
-    SettingsPage,
-    TabsPage
-  ],
+    AppRoutingModule,
+    HttpClientModule],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    InAppBrowser,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     File,
     Media
-  ]
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
