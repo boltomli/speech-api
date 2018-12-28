@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Platform, ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
-import { File, FileEntry } from '@ionic-native/file/ngx';
+import { File } from '@ionic-native/file/ngx';
 import xmlbuilder from 'xmlbuilder/lib';
 import { Media } from '@ionic-native/media/ngx';
 
@@ -121,10 +121,11 @@ export class Tab1Page {
       });
     }, (err) => {
       this.toastCtrl.create({
-        message: 'Token expired? Retry after refresh.\n' + err.message,
+        message: 'Token expired? Retry.\n' + err.message,
         duration: 1000
       }).then((toast) => {
         toast.present();
+        this.getToken();
       });
     });
   }
