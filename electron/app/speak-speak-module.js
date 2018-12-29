@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["tab1-tab1-module"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["speak-speak-module"],{
 
 /***/ "./node_modules/xmlbuilder/lib/Utility.js":
 /*!************************************************!*\
@@ -2870,22 +2870,22 @@
 
 /***/ }),
 
-/***/ "./src/app/tab1/tab1.module.ts":
-/*!*************************************!*\
-  !*** ./src/app/tab1/tab1.module.ts ***!
-  \*************************************/
-/*! exports provided: Tab1PageModule */
+/***/ "./src/app/speak/speak.module.ts":
+/*!***************************************!*\
+  !*** ./src/app/speak/speak.module.ts ***!
+  \***************************************/
+/*! exports provided: SpeakPageModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Tab1PageModule", function() { return Tab1PageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SpeakPageModule", function() { return SpeakPageModule; });
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/index.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _tab1_page__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./tab1.page */ "./src/app/tab1/tab1.page.ts");
+/* harmony import */ var _speak_page__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./speak.page */ "./src/app/speak/speak.page.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2898,59 +2898,59 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-var Tab1PageModule = /** @class */ (function () {
-    function Tab1PageModule() {
+var SpeakPageModule = /** @class */ (function () {
+    function SpeakPageModule() {
     }
-    Tab1PageModule = __decorate([
+    SpeakPageModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             imports: [
                 _ionic_angular__WEBPACK_IMPORTED_MODULE_0__["IonicModule"],
                 _angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"],
-                _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forChild([{ path: '', component: _tab1_page__WEBPACK_IMPORTED_MODULE_5__["Tab1Page"] }])
+                _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forChild([{ path: '', component: _speak_page__WEBPACK_IMPORTED_MODULE_5__["SpeakPage"] }])
             ],
-            declarations: [_tab1_page__WEBPACK_IMPORTED_MODULE_5__["Tab1Page"]]
+            declarations: [_speak_page__WEBPACK_IMPORTED_MODULE_5__["SpeakPage"]]
         })
-    ], Tab1PageModule);
-    return Tab1PageModule;
+    ], SpeakPageModule);
+    return SpeakPageModule;
 }());
 
 
 
 /***/ }),
 
-/***/ "./src/app/tab1/tab1.page.html":
-/*!*************************************!*\
-  !*** ./src/app/tab1/tab1.page.html ***!
-  \*************************************/
+/***/ "./src/app/speak/speak.page.html":
+/*!***************************************!*\
+  !*** ./src/app/speak/speak.page.html ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      Home\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <ion-card class=\"welcome-card\">\n      <ion-card-header>\n        <ion-card-subtitle>Get Started</ion-card-subtitle>\n        <ion-card-title>Welcome to Speech Services</ion-card-title>\n      </ion-card-header>\n      <ion-card-content>\n        <p>Provide a valid Speech Services key that matches region first.</p>\n        <p>Update in Settings if region or key changes.</p>\n        <p>See Resources for technical details.</p>\n      </ion-card-content>\n    </ion-card>\n\n    <ion-list lines=\"none\" [class.hide]=\"token\">\n      <ion-list-header>\n        <ion-label>Settings</ion-label>\n      </ion-list-header>\n      <ion-item>\n        <ion-label>Region</ion-label>\n        <ion-select [(ngModel)]=\"region\" interface=\"popover\">\n          <ion-select-option value=\"eastus\">East US</ion-select-option>\n          <ion-select-option value=\"westus\">West US</ion-select-option>\n          <ion-select-option value=\"southeastasia\">Southeast Asia</ion-select-option>\n          <ion-select-option value=\"westeurope\">West Europe</ion-select-option>\n        </ion-select>\n      </ion-item>\n      <ion-item>\n        <ion-label position=\"floating\"><ion-icon name=\"key\"></ion-icon> Key</ion-label>\n        <ion-input [(ngModel)]=\"key\" type=\"text\" clearInput></ion-input>\n      </ion-item>\n      <ion-button expand=\"block\" (click)=\"saveSettings();\">Save</ion-button>\n    </ion-list>\n\n    <ion-list>\n      <ion-list-header>\n        <ion-label>Voice Select</ion-label>\n      </ion-list-header>\n      <ion-item>\n        <ion-label>Language</ion-label>\n        <ion-select [(ngModel)]=\"language\">\n          <ion-select-option value=\"de-DE\">German (Germany)</ion-select-option>\n          <ion-select-option value=\"en-US\">English (United States)</ion-select-option>\n          <ion-select-option value=\"it-IT\">Italian (Italy)</ion-select-option>\n          <ion-select-option value=\"zh-CN\">Chinese (Simplified)</ion-select-option>\n        </ion-select>\n      </ion-item>\n      <ion-item>\n        <ion-label>Gender</ion-label>\n        <ion-select [(ngModel)]=\"gender\" interface=\"popover\">\n          <ion-select-option value=\"Female\">Female</ion-select-option>\n          <ion-select-option value=\"Male\">Male</ion-select-option>\n        </ion-select>\n      </ion-item>\n      <ion-item>\n        <ion-label>Voice</ion-label>\n        <ion-select [(ngModel)]=\"voice\" interface=\"popover\">\n          <ion-select-option value=\"Microsoft Server Speech Text to Speech Voice (en-US, Jessa24KRUS)\">Jessa24KRUS</ion-select-option>\n          <ion-select-option value=\"Microsoft Server Speech Text to Speech Voice (en-US, Guy24KRUS)\">Guy24KRUS</ion-select-option>\n        </ion-select>\n      </ion-item>\n    </ion-list>\n\n    <ion-list>\n      <ion-list-header>\n        <ion-label>Text to Speak</ion-label>\n      </ion-list-header>\n      <ion-textarea [(ngModel)]=\"text\" placeholder=\"Input text to speak here\"></ion-textarea>\n    </ion-list>\n    <ion-button expand=\"block\" (click)=\"speakText();\">Speak</ion-button>\n  </ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      Speak\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <ion-card class=\"welcome-card\">\n      <ion-card-header>\n        <ion-card-subtitle>Get Started</ion-card-subtitle>\n        <ion-card-title>Welcome to Speech Services</ion-card-title>\n      </ion-card-header>\n      <ion-card-content>\n        <ion-list lines=\"none\">\n          <ion-item><ion-icon name=\"information-circle-outline\"></ion-icon>Provide a valid Speech Services key that matches region first.</ion-item>\n          <ion-item><ion-icon name=\"information-circle-outline\"></ion-icon>Update in Settings if region or key changes.</ion-item>\n          <ion-item><ion-icon name=\"information-circle-outline\"></ion-icon>See Resources for technical details.</ion-item>\n        </ion-list>\n      </ion-card-content>\n    </ion-card>\n\n    <ion-list lines=\"none\" [class.hide]=\"token\">\n      <ion-list-header>\n        <ion-label>Settings</ion-label>\n      </ion-list-header>\n      <ion-item>\n        <ion-label>Region</ion-label>\n        <ion-select [(ngModel)]=\"region\" interface=\"popover\">\n          <ion-select-option value=\"eastus\">East US</ion-select-option>\n          <ion-select-option value=\"westus\">West US</ion-select-option>\n          <ion-select-option value=\"southeastasia\">Southeast Asia</ion-select-option>\n          <ion-select-option value=\"westeurope\">West Europe</ion-select-option>\n        </ion-select>\n      </ion-item>\n      <ion-item>\n        <ion-label position=\"floating\"><ion-icon name=\"key\"></ion-icon> Key</ion-label>\n        <ion-input [(ngModel)]=\"key\" type=\"text\" clearInput></ion-input>\n      </ion-item>\n      <ion-button expand=\"block\" (click)=\"saveSettings();\">Save</ion-button>\n    </ion-list>\n\n    <ion-list lines=\"none\" [class.hide]=\"!token\">\n      <ion-list-header>\n        <ion-label>Voice Select</ion-label>\n      </ion-list-header>\n      <ion-item>\n        <ion-label>Language</ion-label>\n        <ion-select [(ngModel)]=\"language\">\n          <ion-select-option value=\"de-DE\">German (Germany)</ion-select-option>\n          <ion-select-option value=\"en-US\">English (United States)</ion-select-option>\n          <ion-select-option value=\"it-IT\">Italian (Italy)</ion-select-option>\n          <ion-select-option value=\"zh-CN\">Chinese (Simplified)</ion-select-option>\n        </ion-select>\n      </ion-item>\n      <ion-item>\n        <ion-label>Gender</ion-label>\n        <ion-select [(ngModel)]=\"gender\" interface=\"popover\">\n          <ion-select-option value=\"Female\">Female</ion-select-option>\n          <ion-select-option value=\"Male\">Male</ion-select-option>\n        </ion-select>\n      </ion-item>\n      <ion-item>\n        <ion-label>Voice</ion-label>\n        <ion-select [(ngModel)]=\"voice\" interface=\"popover\">\n          <ion-select-option value=\"Microsoft Server Speech Text to Speech Voice (en-US, Jessa24KRUS)\">Jessa24KRUS</ion-select-option>\n          <ion-select-option value=\"Microsoft Server Speech Text to Speech Voice (en-US, Guy24KRUS)\">Guy24KRUS</ion-select-option>\n        </ion-select>\n      </ion-item>\n      <ion-list-header>\n        <ion-label>Text to Speak</ion-label>\n      </ion-list-header>\n      <ion-textarea [(ngModel)]=\"text\" placeholder=\"Input text to speak here\"></ion-textarea>\n      <ion-button expand=\"block\" (click)=\"speakText();\">Speak</ion-button>\n    </ion-list>\n  </ion-content>\n"
 
 /***/ }),
 
-/***/ "./src/app/tab1/tab1.page.scss":
-/*!*************************************!*\
-  !*** ./src/app/tab1/tab1.page.scss ***!
-  \*************************************/
+/***/ "./src/app/speak/speak.page.scss":
+/*!***************************************!*\
+  !*** ./src/app/speak/speak.page.scss ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".welcome-card ion-img {\n  max-height: 35vh;\n  overflow: hidden; }\n\n.hide {\n  display: none; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zb25nbC90ZW1wL3NwZWVjaC1hcGkvc3JjL2FwcC90YWIxL3RhYjEucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsaUJBQWdCO0VBQ2hCLGlCQUFnQixFQUNqQjs7QUFFRDtFQUNFLGNBQWEsRUFDZCIsImZpbGUiOiJzcmMvYXBwL3RhYjEvdGFiMS5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIud2VsY29tZS1jYXJkIGlvbi1pbWcge1xuICBtYXgtaGVpZ2h0OiAzNXZoO1xuICBvdmVyZmxvdzogaGlkZGVuO1xufVxuXG4uaGlkZSB7XG4gIGRpc3BsYXk6IG5vbmU7XG59XG4iXX0= */"
+module.exports = ".welcome-card ion-img {\n  max-height: 35vh;\n  overflow: hidden; }\n\n.hide {\n  display: none; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zb25nbC90ZW1wL3NwZWVjaC1hcGkvc3JjL2FwcC9zcGVhay9zcGVhay5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxpQkFBZ0I7RUFDaEIsaUJBQWdCLEVBQ2pCOztBQUVEO0VBQ0UsY0FBYSxFQUNkIiwiZmlsZSI6InNyYy9hcHAvc3BlYWsvc3BlYWsucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLndlbGNvbWUtY2FyZCBpb24taW1nIHtcbiAgbWF4LWhlaWdodDogMzV2aDtcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbn1cblxuLmhpZGUge1xuICBkaXNwbGF5OiBub25lO1xufVxuIl19 */"
 
 /***/ }),
 
-/***/ "./src/app/tab1/tab1.page.ts":
-/*!***********************************!*\
-  !*** ./src/app/tab1/tab1.page.ts ***!
-  \***********************************/
-/*! exports provided: Tab1Page */
+/***/ "./src/app/speak/speak.page.ts":
+/*!*************************************!*\
+  !*** ./src/app/speak/speak.page.ts ***!
+  \*************************************/
+/*! exports provided: SpeakPage */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Tab1Page", function() { return Tab1Page; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SpeakPage", function() { return SpeakPage; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/index.js");
@@ -2975,8 +2975,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-var Tab1Page = /** @class */ (function () {
-    function Tab1Page(platform, storage, toastCtrl, http, file, media) {
+var SpeakPage = /** @class */ (function () {
+    function SpeakPage(platform, storage, toastCtrl, http, file, media, audioContext) {
         var _this = this;
         this.platform = platform;
         this.storage = storage;
@@ -2984,6 +2984,7 @@ var Tab1Page = /** @class */ (function () {
         this.http = http;
         this.file = file;
         this.media = media;
+        this.audioContext = audioContext;
         this.platform.ready().then(function () {
             _this.storage.get('region').then(function (region) {
                 _this.region = region ? region : 'westus';
@@ -3000,7 +3001,14 @@ var Tab1Page = /** @class */ (function () {
                         });
                     }
                     else {
-                        _this.getToken();
+                        _this.storage.get('token').then(function (token) {
+                            if (!token) {
+                                _this.getToken();
+                            }
+                            else {
+                                _this.token = token;
+                            }
+                        });
                     }
                     _this.storage.get('language').then(function (language) {
                         _this.language = language ? language : 'en-US';
@@ -3015,18 +3023,20 @@ var Tab1Page = /** @class */ (function () {
             });
         });
     }
-    Tab1Page.prototype.getToken = function () {
+    SpeakPage.prototype.getToken = function () {
         var _this = this;
         this.http.post(this.tokenUrl, '', {
             headers: { 'Ocp-Apim-Subscription-Key': this.key },
             responseType: 'text'
         }).subscribe(function (token) {
-            _this.token = token;
-            _this.toastCtrl.create({
-                message: 'Token set!',
-                duration: 1000
-            }).then(function (toast) {
-                toast.present();
+            _this.storage.set('token', token).then(function () {
+                _this.token = token;
+                _this.toastCtrl.create({
+                    message: 'Token set!',
+                    duration: 1000
+                }).then(function (toast) {
+                    toast.present();
+                });
             });
         }, function (err) {
             _this.toastCtrl.create({
@@ -3037,7 +3047,7 @@ var Tab1Page = /** @class */ (function () {
             });
         });
     };
-    Tab1Page.prototype.getSynth = function (path, name) {
+    SpeakPage.prototype.getSynth = function (path, name) {
         var _this = this;
         var ssml_doc = xmlbuilder_lib__WEBPACK_IMPORTED_MODULE_5___default.a.create('speak')
             .att('version', '1.0')
@@ -3058,24 +3068,41 @@ var Tab1Page = /** @class */ (function () {
             },
             responseType: 'arraybuffer'
         }).subscribe(function (synth) {
-            _this.file.resolveLocalFilesystemUrl(path).then(function (entry) {
-                _this.file.writeFile(entry.toInternalURL(), name, synth, { replace: true }).then(function (fileEntry) {
-                    _this.media.create(fileEntry.toInternalURL()).play();
-                    _this.toastCtrl.create({
-                        message: 'File written!',
-                        duration: 1000
-                    }).then(function (toast) {
-                        toast.present();
+            if (_this.platform.is('hybrid') && !_this.platform.is('electron')) {
+                _this.file.resolveLocalFilesystemUrl(path).then(function (entry) {
+                    _this.file.writeFile(entry.toInternalURL(), name, synth, { replace: true }).then(function (fileEntry) {
+                        _this.media.create(fileEntry.toInternalURL()).play();
+                        _this.toastCtrl.create({
+                            message: 'File written!',
+                            duration: 1000
+                        }).then(function (toast) {
+                            toast.present();
+                        });
+                    }).catch(function () {
+                        _this.toastCtrl.create({
+                            message: 'Err',
+                            duration: 1000
+                        }).then(function (toast) {
+                            toast.present();
+                        });
                     });
-                }).catch(function () {
+                });
+            }
+            else {
+                _this.audioContext.decodeAudioData(synth).then(function (buffer) {
+                    var src = _this.audioContext.createBufferSource();
+                    src.buffer = buffer;
+                    src.connect(_this.audioContext.destination);
+                    src.start(0);
+                }, function (err) {
                     _this.toastCtrl.create({
-                        message: 'Err',
+                        message: err.message,
                         duration: 1000
                     }).then(function (toast) {
                         toast.present();
                     });
                 });
-            });
+            }
         }, function (err) {
             _this.toastCtrl.create({
                 message: 'Token expired? Retry.\n' + err.message,
@@ -3086,7 +3113,7 @@ var Tab1Page = /** @class */ (function () {
             });
         });
     };
-    Tab1Page.prototype.saveSettings = function () {
+    SpeakPage.prototype.saveSettings = function () {
         var _this = this;
         this.storage.set('region', this.region).then(function () {
             _this.storage.set('key', _this.key).then(function () {
@@ -3094,7 +3121,7 @@ var Tab1Page = /** @class */ (function () {
             });
         });
     };
-    Tab1Page.prototype.speakText = function () {
+    SpeakPage.prototype.speakText = function () {
         if (!this.text) {
             this.toastCtrl.create({
                 message: 'No text to speak.',
@@ -3107,20 +3134,21 @@ var Tab1Page = /** @class */ (function () {
             this.getSynth(this.file.cacheDirectory, 'synth.wav');
         }
     };
-    Tab1Page = __decorate([
+    SpeakPage = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-tab1',
-            template: __webpack_require__(/*! ./tab1.page.html */ "./src/app/tab1/tab1.page.html"),
-            styles: [__webpack_require__(/*! ./tab1.page.scss */ "./src/app/tab1/tab1.page.scss")]
+            selector: 'app-speak',
+            template: __webpack_require__(/*! ./speak.page.html */ "./src/app/speak/speak.page.html"),
+            styles: [__webpack_require__(/*! ./speak.page.scss */ "./src/app/speak/speak.page.scss")]
         }),
         __metadata("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"],
             _ionic_storage__WEBPACK_IMPORTED_MODULE_3__["Storage"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"],
             _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_4__["File"],
-            _ionic_native_media_ngx__WEBPACK_IMPORTED_MODULE_6__["Media"]])
-    ], Tab1Page);
-    return Tab1Page;
+            _ionic_native_media_ngx__WEBPACK_IMPORTED_MODULE_6__["Media"],
+            AudioContext])
+    ], SpeakPage);
+    return SpeakPage;
 }());
 
 
@@ -3128,4 +3156,4 @@ var Tab1Page = /** @class */ (function () {
 /***/ })
 
 }]);
-//# sourceMappingURL=tab1-tab1-module.js.map
+//# sourceMappingURL=speak-speak-module.js.map

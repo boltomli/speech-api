@@ -841,17 +841,17 @@ module.exports = webpackAsyncContext;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"../tab1/tab1.module": [
-		"./src/app/tab1/tab1.module.ts",
-		"tab1-tab1-module"
+	"../resources/resources.module": [
+		"./src/app/resources/resources.module.ts",
+		"resources-resources-module"
 	],
-	"../tab2/tab2.module": [
-		"./src/app/tab2/tab2.module.ts",
-		"tab2-tab2-module"
+	"../settings/settings.module": [
+		"./src/app/settings/settings.module.ts",
+		"settings-settings-module"
 	],
-	"../tab3/tab3.module": [
-		"./src/app/tab3/tab3.module.ts",
-		"tab3-tab3-module"
+	"../speak/speak.module": [
+		"./src/app/speak/speak.module.ts",
+		"speak-speak-module"
 	],
 	"./tabs/tabs.module": [
 		"./src/app/tabs/tabs.module.ts",
@@ -1046,7 +1046,8 @@ var AppModule = /** @class */ (function () {
                 _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_4__["SplashScreen"],
                 { provide: _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["IonicRouteStrategy"] },
                 _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_8__["File"],
-                _ionic_native_media_ngx__WEBPACK_IMPORTED_MODULE_11__["Media"]
+                _ionic_native_media_ngx__WEBPACK_IMPORTED_MODULE_11__["Media"],
+                AudioContext
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
         })

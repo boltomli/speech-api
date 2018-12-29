@@ -112,7 +112,7 @@ export class SpeakPage {
       },
       responseType: 'arraybuffer'
     }).subscribe((synth) => {
-      if (this.platform.is('hybrid')) {
+      if (this.platform.is('hybrid') && !this.platform.is('electron')) {
         this.file.resolveLocalFilesystemUrl(path).then(entry => {
           this.file.writeFile(entry.toInternalURL(), name, synth, {replace: true}).then(fileEntry => {
             this.media.create(fileEntry.toInternalURL()).play();

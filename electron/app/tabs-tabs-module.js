@@ -56,7 +56,7 @@ var TabsPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-tabs>\n\n  <ion-tab-bar slot=\"bottom\">\n    <ion-tab-button tab=\"tab1\">\n      <ion-icon name=\"headset\"></ion-icon>\n      <ion-label>Home</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"tab2\">\n      <ion-icon name=\"settings\"></ion-icon>\n      <ion-label>Settings</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"tab3\">\n      <ion-icon name=\"information-circle\"></ion-icon>\n      <ion-label>Resources</ion-label>\n    </ion-tab-button>\n  </ion-tab-bar>\n\n</ion-tabs>\n"
+module.exports = "<ion-tabs>\n\n  <ion-tab-bar slot=\"bottom\">\n    <ion-tab-button tab=\"speak\">\n      <ion-icon name=\"headset\"></ion-icon>\n      <ion-label>Speak</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"settings\">\n      <ion-icon name=\"settings\"></ion-icon>\n      <ion-label>Settings</ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"resources\">\n      <ion-icon name=\"information-circle\"></ion-icon>\n      <ion-label>Resources</ion-label>\n    </ion-tab-button>\n  </ion-tab-bar>\n\n</ion-tabs>\n"
 
 /***/ }),
 
@@ -134,42 +134,42 @@ var routes = [
         component: _tabs_page__WEBPACK_IMPORTED_MODULE_2__["TabsPage"],
         children: [
             {
-                path: 'tab1',
+                path: 'speak',
                 children: [
                     {
                         path: '',
-                        loadChildren: '../tab1/tab1.module#Tab1PageModule'
+                        loadChildren: '../speak/speak.module#SpeakPageModule'
                     }
                 ]
             },
             {
-                path: 'tab2',
+                path: 'settings',
                 children: [
                     {
                         path: '',
-                        loadChildren: '../tab2/tab2.module#Tab2PageModule'
+                        loadChildren: '../settings/settings.module#SettingsPageModule'
                     }
                 ]
             },
             {
-                path: 'tab3',
+                path: 'resources',
                 children: [
                     {
                         path: '',
-                        loadChildren: '../tab3/tab3.module#Tab3PageModule'
+                        loadChildren: '../resources/resources.module#ResourcesPageModule'
                     }
                 ]
             },
             {
                 path: '',
-                redirectTo: '/tabs/tab1',
+                redirectTo: '/tabs/speak',
                 pathMatch: 'full'
             }
         ]
     },
     {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/speak',
         pathMatch: 'full'
     }
 ];
