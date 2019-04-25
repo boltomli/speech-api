@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Platform, ToastController } from '@ionic/angular';
-import { Storage } from '@ionic/storage';
+import { StorageService } from '../../services/storage';
 
 @Component({
   selector: 'app-settings',
@@ -16,7 +16,7 @@ export class SettingsPage {
 
   constructor(
     private platform: Platform,
-    private storage: Storage,
+    private storage: StorageService,
     private toastCtrl: ToastController,
     private http: HttpClient
   ) {
