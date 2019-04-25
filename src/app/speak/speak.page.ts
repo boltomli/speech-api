@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Platform, ToastController } from '@ionic/angular';
-import { Storage } from '@ionic/storage';
+import { StorageService } from '../../services/storage';
 import { File } from '@ionic-native/file/ngx';
 import xmlbuilder from 'xmlbuilder/lib';
 import { Media } from '@ionic-native/media/ngx';
@@ -24,12 +24,11 @@ export class SpeakPage {
 
   constructor(
     private platform: Platform,
-    private storage: Storage,
+    private storage: StorageService,
     private toastCtrl: ToastController,
     private http: HttpClient,
     private file: File,
-    private media: Media,
-    private audioContext: AudioContext
+    private media: Media
   ) {
     this.platform.ready().then(() => {
       this.storage.get('region').then((region) => {
@@ -132,10 +131,11 @@ export class SpeakPage {
           });
         });
       } else {
-        this.audioContext.decodeAudioData(synth).then((buffer) => {
-          const src = this.audioContext.createBufferSource();
+        const audioContext = new AudioContext();
+        audioContext.decodeAudioData(synth).then((buffer) => {
+          const src = audioContext.createBufferSource();
           src.buffer = buffer;
-          src.connect(this.audioContext.destination);
+          src.connect(audioContext.destination);
           src.start(0);
         }, (err) => {
           this.toastCtrl.create({

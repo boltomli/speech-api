@@ -1,6 +1,6 @@
 {
   "appId": "com.example.app",
-  "appName": "speech-api",
+  "appName": "speech-api-ng",
   "bundledWebRuntime": false,
   "webDir": "www"
 }
