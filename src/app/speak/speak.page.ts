@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Platform, ToastController } from '@ionic/angular';
 import { StorageService } from '../../services/storage';
 import { File } from '@ionic-native/file/ngx';
-import xmlbuilder from 'xmlbuilder/lib';
+import { xmlbuilder } from 'xmlbuilder/lib';
 import { Media } from '@ionic-native/media/ngx';
 
 @Component({
@@ -14,6 +14,7 @@ import { Media } from '@ionic-native/media/ngx';
 export class SpeakPage {
   region: string;
   key: string;
+  voiceUrl: string;
   tokenUrl: string;
   synthUrl: string;
   token: string;
@@ -33,6 +34,7 @@ export class SpeakPage {
     this.platform.ready().then(() => {
       this.storage.get('region').then((region) => {
         this.region = region ? region : 'westus';
+        this.voiceUrl = `https://${this.region}.tts.speech.microsoft.com/cognitiveservices/voices/list`;
         this.tokenUrl = `https://${this.region}.api.cognitive.microsoft.com/sts/v1.0/issueToken`;
         this.synthUrl = `https://${this.region}.tts.speech.microsoft.com/cognitiveservices/v1`;
         this.storage.get('key').then((key) => {
@@ -92,7 +94,7 @@ export class SpeakPage {
   }
 
   getSynth(path: string, name: string) {
-    const ssml_doc = xmlbuilder.create('speak')
+    const textSSML = xmlbuilder.create('speak')
       .att('version', '1.0')
       .att('xml:lang', this.language.toLowerCase())
       .ele('voice')
@@ -101,7 +103,7 @@ export class SpeakPage {
       .att('name', this.voice)
       .txt(this.text)
       .end().toString();
-    this.http.post(this.synthUrl, ssml_doc, {
+    this.http.post(this.synthUrl, textSSML, {
       headers: {
         'content-type': 'application/ssml+xml',
         'X-Microsoft-OutputFormat' : 'riff-24khz-16bit-mono-pcm',
