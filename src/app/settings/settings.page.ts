@@ -13,6 +13,20 @@ export class SettingsPage {
   key: string;
   token: string;
   tokenUrl: string;
+  regions: any[] = [
+    {
+      id: 'westus',
+      name: 'West US',
+    },
+    {
+      id: 'westus2',
+      name: 'West US2',
+    },
+    {
+      id: 'southeastasia',
+      name: 'South East Asia',
+    }
+  ];
 
   constructor(
     private platform: Platform,
@@ -22,7 +36,7 @@ export class SettingsPage {
   ) {
     this.platform.ready().then(() => {
       this.storage.get('region').then((region) => {
-        this.region = region ? region : 'westus';
+        this.region = region ? region : this.regions[0].id;
         this.tokenUrl = `https://${this.region}.api.cognitive.microsoft.com/sts/v1.0/issueToken`;
         this.storage.get('key').then((key) => {
           this.key = key;

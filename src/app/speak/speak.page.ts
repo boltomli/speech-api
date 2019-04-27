@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Platform, ToastController } from '@ionic/angular';
+import { Platform, ToastController, NavController } from '@ionic/angular';
 import { StorageService } from '../../services/storage';
 import { File } from '@ionic-native/file/ngx';
 import { xmlbuilder } from 'xmlbuilder/lib';
@@ -14,8 +14,8 @@ import { Media } from '@ionic-native/media/ngx';
 export class SpeakPage {
   region: string;
   key: string;
-  voiceUrl: string;
   tokenUrl: string;
+  voiceUrl: string;
   synthUrl: string;
   token: string;
   language: string;
@@ -25,8 +25,9 @@ export class SpeakPage {
 
   constructor(
     private platform: Platform,
-    private storage: StorageService,
     private toastCtrl: ToastController,
+    private navCtrl: NavController,
+    private storage: StorageService,
     private http: HttpClient,
     private file: File,
     private media: Media
@@ -34,8 +35,8 @@ export class SpeakPage {
     this.platform.ready().then(() => {
       this.storage.get('region').then((region) => {
         this.region = region ? region : 'westus';
-        this.voiceUrl = `https://${this.region}.tts.speech.microsoft.com/cognitiveservices/voices/list`;
         this.tokenUrl = `https://${this.region}.api.cognitive.microsoft.com/sts/v1.0/issueToken`;
+        this.voiceUrl = `https://${this.region}.tts.speech.microsoft.com/cognitiveservices/voices/list`;
         this.synthUrl = `https://${this.region}.tts.speech.microsoft.com/cognitiveservices/v1`;
         this.storage.get('key').then((key) => {
           this.key = key;
@@ -45,6 +46,7 @@ export class SpeakPage {
               duration: 1000
             }).then((toast) => {
               toast.present();
+              this.navCtrl.navigateRoot('tabs/settings');
             });
           } else {
             this.storage.get('token').then((token) => {
@@ -60,7 +62,7 @@ export class SpeakPage {
             this.storage.get('gender').then((gender) => {
               this.gender = gender ? gender : 'Female';
               this.storage.get('voice').then((voice) => {
-                this.voice = voice ? voice : 'Microsoft Server Speech Text to Speech Voice (en-US, Jessa24KRUS)';
+                this.voice = voice ? voice : 'en-US-Jessa24KRUS';
               });
             });
           });
@@ -89,6 +91,7 @@ export class SpeakPage {
         duration: 1000
       }).then((toast) => {
         toast.present();
+        this.navCtrl.navigateRoot('tabs/settings');
       });
     });
   }

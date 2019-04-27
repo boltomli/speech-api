@@ -11,10 +11,7 @@
     <ion-item>
       <ion-label>Region</ion-label>
       <ion-select [(ngModel)]="region" interface="popover">
-        <ion-select-option value="eastus">East US</ion-select-option>
-        <ion-select-option value="westus">West US</ion-select-option>
-        <ion-select-option value="southeastasia">Southeast Asia</ion-select-option>
-        <ion-select-option value="westeurope">West Europe</ion-select-option>
+        <ion-select-option *ngFor="let region of regions" value={{region.id}}>{{region.name}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
