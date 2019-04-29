@@ -28,6 +28,10 @@ export class SettingsPage {
     }
   ];
 
+  compareWithFn = (o1: any, o2: any) => {
+    return o1 && o2 ? o1.id === o2.id : o1 === o2;
+  }
+
   constructor(
     private platform: Platform,
     private storage: StorageService,
@@ -37,9 +41,7 @@ export class SettingsPage {
     this.platform.ready().then(() => {
       this.storage.get('region').then((region) => {
         this.region = region ? region : this.regions[0].id;
-        this.tokenUrl = `https://${this.region}.api.cognitive.microsoft.com/sts/v1.0/issueToken`;
         this.storage.get('key').then((key) => {
-          this.key = key;
           if (!key) {
             this.toastCtrl.create({
               message: 'No key present.',
@@ -48,6 +50,7 @@ export class SettingsPage {
               toast.present();
             });
           } else {
+            this.key = key;
             this.storage.get('token').then((token) => {
               if (!token) {
                 this.getToken();
@@ -62,17 +65,22 @@ export class SettingsPage {
   }
 
   getToken() {
+    this.tokenUrl = `https://${this.region}.api.cognitive.microsoft.com/sts/v1.0/issueToken`;
     this.http.post(this.tokenUrl, '', {
       headers: {'Ocp-Apim-Subscription-Key': this.key},
       responseType: 'text'
     }).subscribe((token) => {
-      this.storage.set('token', token).then(() => {
-        this.token = token;
-        this.toastCtrl.create({
-          message: 'Token set!',
-          duration: 1000
-        }).then((toast) => {
-          toast.present();
+      this.storage.set('region', this.region).then(() => {
+        this.storage.set('key', this.key).then(() => {
+          this.storage.set('token', token).then(() => {
+            this.token = token;
+            this.toastCtrl.create({
+              message: 'Token set!',
+              duration: 1000
+            }).then((toast) => {
+              toast.present();
+            });
+          });
         });
       });
     }, (err) => {
@@ -81,14 +89,6 @@ export class SettingsPage {
         duration: 1000
       }).then((toast) => {
         toast.present();
-      });
-    });
-  }
-
-  saveSettings() {
-    this.storage.set('region', this.region).then(() => {
-      this.storage.set('key', this.key).then(() => {
-        this.getToken();
       });
     });
   }
