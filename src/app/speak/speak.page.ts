@@ -22,6 +22,7 @@ export class SpeakPage {
   gender: string;
   voice: string;
   text: string;
+  voices: string;
 
   constructor(
     private platform: Platform,
@@ -34,44 +35,50 @@ export class SpeakPage {
   ) {
     this.platform.ready().then(() => {
       this.storage.get('region').then((region) => {
-        this.region = region ? region : 'westus';
-        this.tokenUrl = `https://${this.region}.api.cognitive.microsoft.com/sts/v1.0/issueToken`;
-        this.voiceUrl = `https://${this.region}.tts.speech.microsoft.com/cognitiveservices/voices/list`;
-        this.synthUrl = `https://${this.region}.tts.speech.microsoft.com/cognitiveservices/v1`;
-        this.storage.get('key').then((key) => {
-          this.key = key;
-          if (!key) {
-            this.toastCtrl.create({
-              message: 'No key present.',
-              duration: 1000
-            }).then((toast) => {
-              toast.present();
-              this.navCtrl.navigateRoot('tabs/settings');
-            });
-          } else {
-            this.storage.get('token').then((token) => {
-              if (!token) {
-                this.getToken();
-              } else {
-                this.token = token;
-              }
-            });
-          }
-          this.storage.get('language').then((language) => {
-            this.language = language ? language : 'en-US';
-            this.storage.get('gender').then((gender) => {
-              this.gender = gender ? gender : 'Female';
-              this.storage.get('voice').then((voice) => {
-                this.voice = voice ? voice : 'en-US-Jessa24KRUS';
-              });
-            });
+        if (!region) {
+          this.toastCtrl.create({
+            message: 'No region selected.',
+            duration: 1000
+          }).then((toast) => {
+            toast.present();
+            this.navCtrl.navigateRoot('tabs/settings');
           });
-        });
+        } else {
+          this.region = region;
+          this.storage.get('key').then((key) => {
+            if (!key) {
+              this.toastCtrl.create({
+                message: 'No key present.',
+                duration: 1000
+              }).then((toast) => {
+                toast.present();
+                this.navCtrl.navigateRoot('tabs/settings');
+              });
+            } else {
+              this.key = key;
+              this.getToken();
+              this.storage.get('token').then((token) => {
+                this.token = token;
+                this.storage.get('language').then((language) => {
+                  this.language = language ? language : 'en-US';
+                  this.storage.get('gender').then((gender) => {
+                    this.gender = gender ? gender : 'Female';
+                    this.storage.get('voice').then((voice) => {
+                      this.voice = voice ? voice : 'en-US-Jessa24KRUS';
+                    });
+                  });
+                });
+                this.getVoices();
+              });
+            }
+          });
+        }
       });
     });
   }
 
   getToken() {
+    this.tokenUrl = `https://${this.region}.api.cognitive.microsoft.com/sts/v1.0/issueToken`;
     this.http.post(this.tokenUrl, '', {
       headers: {'Ocp-Apim-Subscription-Key': this.key},
       responseType: 'text'
@@ -97,6 +104,7 @@ export class SpeakPage {
   }
 
   getSynth(path: string, name: string) {
+    this.synthUrl = `https://${this.region}.tts.speech.microsoft.com/cognitiveservices/v1`;
     const textSSML = xmlbuilder.create('speak')
       .att('version', '1.0')
       .att('xml:lang', this.language.toLowerCase())
@@ -162,14 +170,6 @@ export class SpeakPage {
     });
   }
 
-  saveSettings() {
-    this.storage.set('region', this.region).then(() => {
-      this.storage.set('key', this.key).then(() => {
-        this.getToken();
-      });
-    });
-  }
-
   speakText() {
     if (!this.text) {
       this.toastCtrl.create({
@@ -181,5 +181,17 @@ export class SpeakPage {
     } else {
       this.getSynth(this.file.cacheDirectory, 'synth.wav');
     }
+  }
+
+  getVoices() {
+    this.voiceUrl = `https://${this.region}.tts.speech.microsoft.com/cognitiveservices/voices/list`;
+    this.http.get(this.voiceUrl, {
+      headers: {
+        'Authorization': 'Bearer ' + this.token,
+      },
+      responseType: 'text'
+    }).subscribe((voices) => {
+      this.voices = voices.toString();
+    });
   }
 }

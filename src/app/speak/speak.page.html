@@ -8,15 +8,9 @@
 
 <ion-content>
     <ion-card class="welcome-card">
-      <ion-card-header>
-        <ion-card-subtitle>Get Started</ion-card-subtitle>
-        <ion-card-title>Welcome to Speech Services</ion-card-title>
-      </ion-card-header>
       <ion-card-content>
         <ion-list lines="none">
-          <ion-item><ion-icon name="information-circle-outline"></ion-icon>Provide a valid Speech Services key that matches region first.</ion-item>
-          <ion-item><ion-icon name="information-circle-outline"></ion-icon>Update in Settings if region or key changes.</ion-item>
-          <ion-item><ion-icon name="information-circle-outline"></ion-icon>See Resources for technical details.</ion-item>
+          <ion-item><ion-icon name="information-circle-outline"></ion-icon>Change region and key in Settings when necessary.</ion-item>
         </ion-list>
       </ion-card-content>
     </ion-card>
@@ -44,8 +38,8 @@
       <ion-item>
         <ion-label>Voice</ion-label>
         <ion-select [(ngModel)]="voice" interface="popover">
-          <ion-select-option value="Microsoft Server Speech Text to Speech Voice (en-US, Jessa24KRUS)">Jessa24KRUS</ion-select-option>
-          <ion-select-option value="Microsoft Server Speech Text to Speech Voice (en-US, Guy24KRUS)">Guy24KRUS</ion-select-option>
+          <ion-select-option>en-US-Jessa24KRUS</ion-select-option>
+          <ion-select-option>en-US-Guy24KRUS</ion-select-option>
         </ion-select>
       </ion-item>
       <ion-list-header>
@@ -54,4 +48,15 @@
       <ion-textarea [(ngModel)]="text" placeholder="Input text to speak here"></ion-textarea>
       <ion-button expand="block" (click)="speakText();">Speak</ion-button>
     </ion-list>
+
+    <ion-card>
+      <ion-card-content>
+        <ion-card-header>
+          <ion-card-title>Available voices list from public API</ion-card-title>
+        </ion-card-header>
+        <ion-list lines="none">
+          <ion-item [(ngModel)]="voices">{{voices}}</ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
   </ion-content>
